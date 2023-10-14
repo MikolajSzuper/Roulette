@@ -21,4 +21,6 @@ class GameMenu:
             return True
         elif(self.btns[1].checkCursor()):
             pygame.quit()
+        elif(self.btns[2].checkCursor()):
+            return True
         return False

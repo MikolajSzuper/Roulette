@@ -8,6 +8,7 @@ screen = pygame.display.set_mode((800, 720))
 clock = pygame.time.Clock()
 running = True
 game_runing = False
+game_start = False
 bg = pygame.image.load("assets/bg.png")
 menu = Menu()   
 gamem = GameMenu()
@@ -20,14 +21,20 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if(not game_runing):
                 game_runing = menu.click()
+            else:
+                game_start = gamem.click()
+                if game_start == True:
+                    blocks.click()
     screen.fill((15,77,91))
     screen.blit(bg, (0, 0))
+    if(game_start):
+        game_start = blocks.moving()
     if(not game_runing):
         menu.update(screen)
     else:
         gamem.update(screen)
         blocks.update(screen)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(30)
 
 pygame.quit()
