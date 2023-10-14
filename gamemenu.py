@@ -1,7 +1,7 @@
-#game.py
+#gamemenu.py
 import pygame
 from button import Button
-class Game:
+class GameMenu:
     pos = pygame.Vector2(50,600)
     size = pygame.Vector2(200,50)
     dis=50

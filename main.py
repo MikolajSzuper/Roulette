@@ -1,7 +1,7 @@
 import pygame
 from menu import Menu
-from game import Game
-from roulette import Roulette
+from gamemenu import GameMenu
+from rouletteblocks import RouletteBlocks
 pygame.init()
 
 screen = pygame.display.set_mode((800, 720))
@@ -9,8 +9,9 @@ clock = pygame.time.Clock()
 running = True
 game_runing = False
 bg = pygame.image.load("assets/bg.png")
-menu = Menu()
-game = Game()
+menu = Menu()   
+gamem = GameMenu()
+blocks = RouletteBlocks()
 
 while running:
     for event in pygame.event.get():
@@ -24,7 +25,8 @@ while running:
     if(not game_runing):
         menu.update(screen)
     else:
-        game.update(screen)
+        gamem.update(screen)
+        blocks.update(screen)
     pygame.display.flip()
     clock.tick(60)
 
