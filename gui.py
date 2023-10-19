@@ -41,6 +41,7 @@ class Gui:
         self.money-=self.hw
         self.ybet = self.hw
     def result(self,_winnum):
+        self.hw = 0
         if(_winnum==self.onwh):
             price=0
             if(_winnum=="0"):
