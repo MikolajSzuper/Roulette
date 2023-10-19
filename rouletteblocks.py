@@ -40,12 +40,6 @@ class RouletteBlocks:
             self.tick=0
             self.velocity=20
             return False
-        # elif(self.tick == self.max_tick-50 or self.tick == self.max_tick-100):
-        #     self.velocity -= 2
-        # # elif(self.tick == self.max_tick-10):
-        # #     self.velocity -= 2
-        # elif(self.tick > self.max_tick-10 and self.tick < self.max_tick):
-        #     self.velocity -= 0.4
         elif(self.tick > self.max_tick/2 and self.velocity > self.max_velocity/2):
             self.velocity=self.velocity*0.9
         elif(self.tick > self.max_tick and self.blocks[num].getPos().x > 150 and self.blocks[num].getPos().x < 380 and self.velocity > 3):
