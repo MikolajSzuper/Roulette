@@ -17,6 +17,7 @@ class RouletteBlocks:
     seed(1)
     velocity=20
     max_tick=300
+    max_velocity=20
     for i in range(37):
         if(i==0):
             num_color = (0,200,0)
@@ -39,14 +40,17 @@ class RouletteBlocks:
             self.tick=0
             self.velocity=20
             return False
-        elif(self.tick == self.max_tick-50):
-            self.velocity -= 5
-        elif(self.tick == self.max_tick-100):
-            self.velocity -= 5
-        elif(self.tick == self.max_tick-10):
-            self.velocity -= 2
-        elif(self.tick == self.max_tick-2):
-            self.velocity -= 2
+        # elif(self.tick == self.max_tick-50 or self.tick == self.max_tick-100):
+        #     self.velocity -= 2
+        # # elif(self.tick == self.max_tick-10):
+        # #     self.velocity -= 2
+        # elif(self.tick > self.max_tick-10 and self.tick < self.max_tick):
+        #     self.velocity -= 0.4
+        elif(self.tick > self.max_tick/2 and self.velocity > self.max_velocity/2):
+            self.velocity=self.velocity*0.9
+        elif(self.tick > self.max_tick and self.blocks[num].getPos().x > 150 and self.blocks[num].getPos().x < 380 and self.velocity > 3):
+            self.velocity=self.velocity*0.9
+
         if(self.blocks[last].getPos().x>800 and self.blocks[first].getPos().x >= self.pos.x):
             self.blocks[last].movePos(pygame.Vector2(self.pos.x - self.size.x - self.dis,self.blocks[last].getPos().y))
         for i in self.blocks:
@@ -69,7 +73,14 @@ class RouletteBlocks:
         for i in range(len(self.blocks)):
             if(self.blocks[i].getText()==_text):
                 return i
+    def getWinBlock(self,_text):
+        for i in self.blocks:
+            if(i.getText()==_text):
+                return i
     def genRandomNum(self):
         self.random_num = randint(0,36)
     def click(self):
         self.genRandomNum()
+    def getWinNum(self):
+        win = self.getWinBlock(str(self.random_num))
+        return win.getColor()

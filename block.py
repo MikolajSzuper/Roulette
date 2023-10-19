@@ -22,3 +22,10 @@ class Block:
         return self.pos
     def getText(self):
         return self.text
+    def getColor(self):
+        if(self.color == (200,0,0)):
+            return "R"
+        elif(self.color == (0,200,0)):
+            return "0"
+        elif(self.color == (0,0,0)):
+            return "B"

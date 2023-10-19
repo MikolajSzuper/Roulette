@@ -21,14 +21,17 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if(not game_runing):
                 game_runing = menu.click()
-            else:
+            elif(not game_start):
                 game_start = gamem.click()
-                if game_start == True:
+                if(game_start):
                     blocks.click()
     screen.fill((15,77,91))
     screen.blit(bg, (0, 0))
     if(game_start):
         game_start = blocks.moving()
+        if(not game_start):
+            gamem.result(blocks.getWinNum())
+            gamem.setBetAvaible(True)
     if(not game_runing):
         menu.update(screen)
     else:
